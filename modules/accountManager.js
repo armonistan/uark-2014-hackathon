@@ -30,7 +30,7 @@ exports.validateLogin = function(name, password, f) {
 }
 
 exports.createUser = function(name, password) {
-	fs.writeFile('users/' + name + '.json', '{"name": "'+ name +'", "pass": "' + password + '"}', function(error){
+	fs.writeFile('users/' + name + '.json', '{"name": "'+ name +'", "pass": "' + password + '", "karma" : "10"}', function(error){
 		if(error) throw error;
 
 		console.log("created a new user " + name);
