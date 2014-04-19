@@ -15,17 +15,17 @@ html
 			.span-8.last.content_box.header_box
 				block message
 				br
-				a(href='/help') Help Me!
-				span  
-				a(href='/about') About this Page
-				span  
 				if (name != null)
-					a(href='/logout') Logout
-					span
-				else
 					a(href='/landing/#{name}') Landing
 					span  
+				a(href='/about') About
+				span  
+				a(href='/help') Help
+				span  
 				block moreLinks
+				if (name != null)
+					a(href='/logout') Logout
+					span  
 			hr.space
 			block content 
 			hr.space

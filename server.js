@@ -22,10 +22,16 @@ app.get('/', function(req, res){
 	if (req.session.loggedIn === undefined) {
 		req.session.loggedIn = false;
 	}
-	res.render('index',
-	{title : "Pork!",
-	name: req.session.name}
-	);
+	
+	if (req.session.loggedIn) {
+		res.redirect('/landing/' + req.session.name);
+	}
+	else {
+		res.render('index',
+		{title : "Pork!",
+		name: req.session.name}
+		);
+	}
 });
 
 app.post('/', function(req, res){

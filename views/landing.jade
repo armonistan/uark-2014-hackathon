@@ -1,8 +1,9 @@
 extend layout
 block moreLinks
 	a(href='/settings/#{name}') Settings
+	span  
 block message
-	span Hello #{name}! Learn something you little shit!
+	span Hello #{name}! Time to learn!
 block content
 	.content_box.span-2.prepend-1.middle_box
 		h2 Profile
@@ -18,7 +19,7 @@ block content
 		if (user.activeSessions != null) 
 			-each message in user.activeSessions
 				a(href='/session/#{message[0]}') Talking with #{message[1]} about #{message[2]}
-				br			
+				br
 	.content_box.span-3.last.middle_box
 		h2 New Session
 		form(action='/session', method='post')
