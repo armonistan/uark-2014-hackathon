@@ -3,6 +3,7 @@ var app = express();
 
 var AM = require('./modules/accountManager');
 var SM = require('./modules/settingsManager');
+var CM = require('./modules/converSationManager');
 
 var fs = require('fs');
 
