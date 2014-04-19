@@ -4,6 +4,9 @@ html
 		title #{title}
 		link(href='/css/blueprint.css', rel='stylesheet' type='text/css')
 		link(href='/css/pork.css', rel='stylesheet' type='text/css')
+		if (error != null)
+			script.
+				alert("#{error}")
 	body
 		.container
 			hr.space
@@ -17,7 +20,7 @@ html
 				if (name != null)
 					a(href='/logout') Logout
 				block moreLinks
-			block content
+			block content 
 			.span-10.last.prepend-1
 				br
 				hr.space

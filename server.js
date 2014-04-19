@@ -25,12 +25,16 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
 	AM.validateLogin(req.param('name'), req.param('pass'), function(valid) {
 		console.log(valid);
-		if (valid) {
+		if (!(valid === undefined)) {
 			req.session.loggedIn = true;
 			req.session.name = req.param('name');
 			res.redirect('/landing/' + req.param('name'));
 		} else {
-			res.send("Incorrect login information! <a href='/'>Home</a>");
+			res.render('index',
+			{title: "Pork!",
+			name: req.session.name,
+			error:	"Incorrect login information!"}
+			);
 		}
 	});
 });
@@ -40,7 +44,11 @@ app.get('/logout', function(req, res){
 		req.session.destroy();
 		res.redirect('/');
 	} else {
-		res.send("Not logged in! <a href'/'>Home</a>");
+		res.render('index',
+		{title: "Pork!",
+		name: req.session.name,
+		error:	"You aren't logged in!"}
+		);
 	}
 });
 
@@ -80,7 +88,11 @@ app.post('/signup', function(req, res){
 			req.session.name = req.param('name');
 			res.redirect('/landing/' + req.param('name'));
 		} else {
-			res.send("Account already in use! <a href='/'>Home</a>");
+			res.render('signup',
+			{title: "Pork!",
+			name: req.session.name,
+			error:	"Account already in use!"}
+			);
 		}
 	});
 });
@@ -91,7 +103,11 @@ app.get('/landing/:name', function(req, res){
 			{title: "Use Pork!", name : req.params.name}
 		);
 	} else {
-		res.send("This is not your homepage! <a href='/'>Home</a>");
+		res.render('index',
+		{title: "Pork!",
+		name: req.session.name,
+		error:	"This is not your homepage!"}
+		);
 	}
 });
 
