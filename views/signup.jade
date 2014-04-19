@@ -6,11 +6,16 @@ block message
 block content
 	.span-10.last.prepend-1
 		h3 Create
-		form.create(method='post')
-			input(type='text', name='name', id='c_username', placeholder='Username')
-			br
-			input(type='password', name='pass', id='c_password', placeholder='Password')
-			br
-			input(type='password', id='c_confirm_password', placeholder='Confirm Password')
-			br
-			input(type='submit')
+		if (name == null)
+			form.create(method='post')
+				input(type='text', name='name', id='c_username', placeholder='Username')
+				br
+				input(type='password', name='pass', id='c_password', placeholder='Password')
+				br
+				input(type='password', id='c_confirm_password', placeholder='Confirm Password')
+				br
+				input(type='submit')
+		else
+			p 
+				|You've already logged in! View your 
+				a(href='/landing/#{name}') Landing Page.
