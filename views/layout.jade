@@ -12,13 +12,17 @@ html
 			.span-8.last.content_box.header_box
 				block message
 				br
-				a(href='/help') Help Me! 
+				a(href='/help') Help Me!
+				span  
 				a(href='/about') About this Page
+				span  
 				if (name != null)
 					a(href='/logout') Logout
+					span  
 				block moreLinks
 			hr.space
 			block content
 			hr.space
 			.span-10.last.prepend-1.content_box
-				p Running on node with Express, Jade and Love
+				p Running on node.js with Express and Jade
+			hr.space

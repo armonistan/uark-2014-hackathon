@@ -44,4 +44,4 @@ exports.createUser = function(name, password) {
 
 		console.log("created a new user " + name);
 	});
-}	
+}

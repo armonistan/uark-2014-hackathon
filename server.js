@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 
 var AM = require('./modules/accountManager');
+var CM = require('./modules/conversationManager');
+
+var fs = require('fs');
 
 app.use(express.logger('dev'));
 app.set('views', __dirname + '/views');
@@ -85,6 +88,18 @@ app.post('/signup', function(req, res){
 	});
 });
 
+app.post('/session', function(req, res) {
+	CM.validateUsers(req.param('user1'), req.param('user2'), function(valid) {
+		if (valid) {
+			var newConvo = CM.createConversation(req.param('user1'), req.param('user2'));
+			res.redirect('/session/' + newConvo);
+		}
+		else {
+			res.send("One of the users does not exist! <a href='/landing'>Back</a>");
+		}
+	});
+});
+
 app.get('/landing/:name', function(req, res){
 	if(req.session.loggedIn && req.session.name == req.params.name){
 		res.render('landing',
@@ -101,9 +116,11 @@ app.get('/landing', function(req, res) {
 	);
 });
 
-app.get('/session', function(req, res) {
+app.get('/session/:number', function(req, res) {
+	var convoFile = CM.loadConversation(req.params.number);
+	
 	res.render('session',
-	{title: "Learn with Pork!", name: "Fucktard", topic: "Espanol", partnerUsername: "Wise Master"}
+	{title: "Learn with Pork!", convo: convoFile}
 	);
 });
 
