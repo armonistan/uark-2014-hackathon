@@ -2,8 +2,8 @@ doctype html
 html
 	head
 		title #{title}
-		link(href='css/blueprint.css', rel='stylesheet' type='text/css')
-		link(href='css/pork.css', rel='stylesheet' type='text/css')
+		link(href='/css/blueprint.css', rel='stylesheet' type='text/css')
+		link(href='/css/pork.css', rel='stylesheet' type='text/css')
 	body
 		.container
 			hr.space
@@ -13,7 +13,9 @@ html
 				block message
 			.span-10.last.prepend-1
 				a(href='/help') Help Me! 
-				a(href='/about') About this Page 
+				a(href='/about') About this Page
+				if (name != null)
+					a(href='/logout') Logout
 				block moreLinks
 			block content
 			.span-10.last.prepend-1

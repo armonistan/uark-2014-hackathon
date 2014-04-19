@@ -17,7 +17,8 @@ app.get('/', function(req, res){
 		req.session.loggedIn = false;
 	}
 	res.render('index',
-	{title : "Pork!"}
+	{title : "Pork!",
+	name: req.session.name}
 	);
 });
 
@@ -34,27 +35,40 @@ app.post('/', function(req, res){
 	});
 });
 
+app.get('/logout', function(req, res){
+	if (req.session.loggedIn == true) {
+		req.session.destroy();
+		res.redirect('/');
+	} else {
+		res.send("Not logged in! <a href'/'>Home</a>");
+	}
+});
+
 app.get('/help', function(req, res){
 	res.render('help',
-	{title : "Help with Pork!"}
+	{title : "Help with Pork!",
+	name : req.session.name}
 	);
 });
 
 app.get('/signup', function(req, res){
 	res.render('signup',
-	{title : "Signup for Pork!"}
+	{title : "Signup for Pork!",
+	name : req.session.name}
 	);
 });
 
 app.get('/about', function(req, res){
 	res.render('about',
-	{title : "About Pork!"}
+	{title : "About Pork!",
+	name: req.session.name}
 	);
 });
 
 app.get('/signup', function(req, res){
 	res.render('signup',
-	{title : "Signup for Pork!"}
+	{title : "Signup for Pork!",
+	name: req.session.name}
 	);
 });
 
@@ -74,7 +88,7 @@ app.post('/signup', function(req, res){
 app.get('/landing/:name', function(req, res){
 	if(req.session.loggedIn && req.session.name == req.params.name){
 		res.render('landing',
-			{name : req.params.name}
+			{title: "Use Pork!", name : req.params.name}
 		);
 	} else {
 		res.send("This is not your homepage! <a href='/'>Home</a>");
