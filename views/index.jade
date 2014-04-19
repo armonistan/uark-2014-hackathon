@@ -1,6 +1,7 @@
 extend layout
 block moreLinks
-	a(href='/signup') Do the signup
+	if(name == null)
+		a(href='/signup') Do the signup
 block message
 	span
 		| Welcome to 
