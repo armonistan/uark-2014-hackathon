@@ -35,6 +35,7 @@ hr.space {
 /*Session*/
 .chat_area {
 	height: 370px;
+	overflow-y: scroll;
 }
 
 .controls_area {

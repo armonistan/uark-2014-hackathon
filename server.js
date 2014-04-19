@@ -154,7 +154,7 @@ app.get('/session/:number', function(req, res) {
 	console.log(convoFile);
 	
 	res.render('session',
-	{title: "Learn with Pork!", convo: convoFile}
+	{title: "Learn with Pork!", convo: convoFile, name: req.session.name}
 	);
 });
 
