@@ -111,7 +111,7 @@ app.post('/session', function(req, res) {
 			CM.validateUsers(req.session.name, user2.name, function(valid) {
 				if (valid) {
 					var newConvo = CM.createConversation(req.session.name, user2.name);
-			AM.addCoversationToUser(req.param('user1'), newConvo, req.param('user2'), 'How to JS');
+					AM.addCoversationToUser(req.session.name, newConvo, user2.name, req.param('topic'));
 					res.redirect('/session/' + newConvo);
 				} else {
 					res.send("One of the users does not exist! <a href='/landing/"+ req.session.name+"'>Back</a>");
@@ -162,7 +162,9 @@ app.get('/session/:number', function(req, res) {
 	console.log(convoFile);
 	
 	res.render('session',
-	{title: "Learn with Pork!", convo: convoFile, name: req.session.name}
+	{title: "Learn with Pork!", 
+	convo: convoFile, 
+	name: req.session.name}
 	);
 });
 

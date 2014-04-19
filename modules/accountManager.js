@@ -45,7 +45,7 @@ exports.addCoversationToUser = function(name, sessionNum, otherName, topic) {
 			var data = fs.readFileSync('users/' + files[i])
 			user = JSON.parse(data);
 			if(user.activeSessions == null)
-				user.activeSessions = ([sessionNum, otherName, topic]);
+				user.activeSessions = ([[sessionNum, otherName, topic]]);
 			else{
 				user.activeSessions.push([sessionNum, otherName, topic]);
 			}

@@ -15,9 +15,10 @@ block content
 			
 	.content_box.span-5.middle_box
 		h2 Active Conversations
-		-each message in user.activeSessions
-			a(href='/session/#{message[0]}') #{message[1]} #{message[2]}
-			br			
+		if (user.activeSessions != null) 
+			-each message in user.activeSessions
+				a(href='/session/#{message[0]}') Talking with #{message[1]} about #{message[2]}
+				br			
 	.content_box.span-3.last.middle_box
 		h2 New Session
 		form(action='/session', method='post')
