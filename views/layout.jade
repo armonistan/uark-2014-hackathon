@@ -13,7 +13,9 @@ html
 				block message
 				br
 				a(href='/help') Help Me! 
-				a(href='/about') About this Page 
+				a(href='/about') About this Page
+				if (name != null)
+					a(href='/logout') Logout
 				block moreLinks
 			hr.space
 			block content

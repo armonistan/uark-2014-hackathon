@@ -13,10 +13,14 @@ block content
 	script(src='/js/account_create.js')
 	.span-10.last.prepend-1.conten_box.middle_box
 		h3 Login
-		form.login(method='post')
-			input(type='text', name='name', id='l_username', placeholder='Username')
-			br
-			input(type='password', name='pass', id='l_password', placeholder='Password')
-			br
-			input(type='submit', id='l_submit')
-
+		if (name == null)
+			form.login(method='post')
+				input(type='text', name='name', id='l_username', placeholder='Username')
+				br
+				input(type='password', name='pass', id='l_password', placeholder='Password')
+				br
+				input(type='submit', id='l_submit')
+		else
+			p 
+				|You've already logged in! View your 
+				a(href='/landing/#{name}') Landing Page.
