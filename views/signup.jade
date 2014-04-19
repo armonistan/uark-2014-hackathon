@@ -1,16 +1,16 @@
 extend layout
-block content
-	h1 Pork!
+block message
 	p
-		| Thank you for signing up for  
+		| Thank you for signing up for 
 		strong Pork!
-	
-	form.create(method='post')
+block content
+	.span-12
 		h3 Create
-		input(type='text', name='name', placeholder='Username')
-		br
-		input(type='password', name='pass', placeholder='Password')
-		br
-		input(type='password', name='c_confirm_password', placeholder='Confirm Password')
-		br
-		input(type='submit')
+		form.create
+			input(type='text', id='c_username', placeholder='Username')
+			br
+			input(type='password', id='c_password', placeholder='Password')
+			br
+			input(type='password', id='c_confirm_password', placeholder='Confirm Password')
+			br
+			input(type='submit')
