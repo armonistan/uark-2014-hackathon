@@ -1,0 +1,20 @@
+extend layout
+block moreLinks
+	a(href="/") Home
+block message
+	p
+		strong Pork!
+		|  Settings.
+block content
+	.span-10.last.prepend-1
+	h3 Check it when you need it!
+	form.settings(method='post')
+			input(type='checkbox', name='hasComputerScience', id='has_computerScience')
+			br
+			input(type='checkbox', name='hasMath', id='has_math')
+			br
+			input(type='checkbox', name='hasSpanish', id='has_spanish')
+			br
+			input(type='checkbox', name='needSpanish', id='need_spanish')
+			br			
+			input(type='submit')
