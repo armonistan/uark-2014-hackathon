@@ -33,15 +33,14 @@ exports.findMatches = function(category, topic, cb) {
 		cb(null)
 	} else {
 		var files = fs.readdirSync('users');
-		for (var k = 0; k < matches.length; k++) {
+		console.log(matches);
+		for (var k = 0; k < files.length; k++) {
 			data = fs.readFileSync('users/' + files[k]);
 			var user = JSON.parse(data);
-			if (k == 0) {
+			if (k == 0 && matches.indexOf(user.name) != -1) {
 				match = user;
-			} else {
-				if (parseInt(match.karma) < parseInt(user.karma)) {
-					match = user;
-				}
+			} else if (matches.indexOf(user.name) != -1){
+				match = user;
 			}
 		}
 
