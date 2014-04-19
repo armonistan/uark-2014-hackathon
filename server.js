@@ -18,6 +18,12 @@ app.get('/help', function(req, res){
 	);
 });
 
+app.get('/signup', function(req, res){
+	res.render('signup',
+	{title : "Signup for Pork!"}
+	);
+});
+
 app.get('/about', function(req, res){
 	res.render('about',
 	{title : "About Pork!"}
