@@ -46,13 +46,9 @@ exports.createConversation = function(user1, user2) {
 exports.loadConversation = function(number) {
 	var convoFile;
 	
-	console.log("Convo: " + number);
+	convoFile = JSON.parse(fs.readFileSync('convos/' + number + '.json'));
 	
-	fs.readFile('convos/' + number + '.json', function(error, data){
-		if (error) throw error;
-		
-		convoFile = data;
-	});
+	console.log(convoFile);
 	
 	return convoFile;
 }

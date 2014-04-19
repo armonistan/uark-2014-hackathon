@@ -135,6 +135,8 @@ app.get('/landing', function(req, res) {
 app.get('/session/:number', function(req, res) {
 	var convoFile = CM.loadConversation(req.params.number);
 	
+	console.log(convoFile);
+	
 	res.render('session',
 	{title: "Learn with Pork!", convo: convoFile}
 	);
