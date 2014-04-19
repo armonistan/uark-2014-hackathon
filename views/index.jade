@@ -2,6 +2,8 @@ extend layout
 block moreLinks
   a(href='/signup') Do the signup
 block content
+  script(src='/js/jquery.min.js')
+  script(src='/js/account_create.js')
   h1 Pork!
   p
     | Welcome to 
@@ -15,5 +17,5 @@ block content
     br
     input(type='password', id='l_password', placeholder='Password')
     br
-    input(type='submit')
+    input(type='submit', id='l_submit')
 
