@@ -4,6 +4,7 @@ var app = express();
 var AM = require('./modules/accountManager');
 var SM = require('./modules/settingsManager');
 var CM = require('./modules/converSationManager');
+var MM = require('./modules/matchmaker');
 
 var fs = require('fs');
 
@@ -102,13 +103,19 @@ app.post('/signup', function(req, res){
 });
 
 app.post('/session', function(req, res) {
-	CM.validateUsers(req.param('user1'), req.param('user2'), function(valid) {
-		if (valid) {
-			var newConvo = CM.createConversation(req.param('user1'), req.param('user2'));
-			res.redirect('/session/' + newConvo);
-		}
-		else {
-			res.send("One of the users does not exist! <a href='/landing'>Back</a>");
+	MM.findMatches(req.param('category'), req.param('topic'), function(user2){
+		console.log(user2);
+		if(user2 === undefined || user2 == null) {
+			res.send("Could not find a match! <a href='/landing/"+ req.session.name+"'>Back</a>");
+		} else {
+			CM.validateUsers(req.session.name, user2.name, function(valid) {
+				if (valid) {
+					var newConvo = CM.createConversation(req.session.name, user2.name);
+					res.redirect('/session/' + newConvo);
+				} else {
+					res.send("One of the users does not exist! <a href='/landing/"+ req.session.name+"'>Back</a>");
+				}
+			});
 		}
 	});
 });

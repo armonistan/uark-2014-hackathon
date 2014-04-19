@@ -17,6 +17,8 @@ block content
 	.content_box.span-3.last.middle_box
 		h2 New Session
 		form(action='/session', method='post')
-			input(type='hidden', id='user1', value='dpumford', name='user1')
-			input(type='hidden', id='user2', value='fack', name='user2')
-			input(type='submit')
+			h4 Category:
+				input(type='text', id='category', name='category')
+			h4 Topic:
+				input(type='text', id='topic', name='topic')
+			input(type='submit', value='Find Random User')

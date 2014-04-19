@@ -1,6 +1,6 @@
-{"catagories" : [
+{"categories" : [
 	{"name" : "Art", "subtopics" : [
-		{"name" : "Music", "needsHelp" : [], "canHelp" : []},
+		{"name" : "Music", "needsHelp" : [], "canHelp" : ["dpumford"]},
 		{"name" : "Drama", "needsHelp" : [], "canHelp" : []},
 		{"name" : "Painting", "needsHelp" : [], "canHelp" : []}
 	]},
