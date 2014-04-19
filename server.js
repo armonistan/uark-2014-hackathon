@@ -4,6 +4,7 @@ var app = express();
 var AM = require('./modules/accountManager');
 var SM = require('./modules/settingsManager');
 var CM = require('./modules/converSationManager');
+var TM = require('./modules/topicManager');
 
 var fs = require('fs');
 
@@ -102,6 +103,8 @@ app.post('/signup', function(req, res){
 });
 
 app.post('/session', function(req, res) {
+	console.log(req);
+	
 	CM.validateUsers(req.param('user1'), req.param('user2'), function(valid) {
 		if (valid) {
 			var newConvo = CM.createConversation(req.param('user1'), req.param('user2'));
@@ -124,14 +127,17 @@ app.get('/landing/:name', function(req, res){
 });
 
 app.post('/settings/:name', function(req, res){
-	SM.setSettings(req.param('name'), (req.body.fack));
+	SM.setSettings(req.param('name'), (req));
 	res.redirect('/landing/' + req.param('name'));
 });
 
 app.get('/settings/:name', function(req, res){
 	if(req.session.loggedIn && req.session.name == req.params.name){
+		var topicDatabase = TM.loadTopicDatabase();
+		
 		res.render('settings',
-			{title: "Pork! Settings", name : req.params.name}
+			{title: "Pork! Settings", name : req.params.name,
+			topics: topicDatabase}
 		);
 	} else {
 		res.render('index',

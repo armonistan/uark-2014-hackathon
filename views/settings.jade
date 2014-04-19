@@ -2,29 +2,33 @@ extend layout
 block moreLinks
 	a(href="/") Home
 block message
-	p
-		strong Pork!
-		|  Settings.
+	strong Pork!
+	span  Settings.
 block content
-	.span-10.last.prepend-1
+	.span-10.last.prepend-1.content_box
 		h3 Check it when you need it!
-		form.settings(name = 'settings', method='post')
-			input(type='checkbox', name='fack[helpCS]', id='has_computerScience')
-			| Need help in Computer Science
-			br
-			input(type='checkbox', name='fack[helpMath]', id='has_math')
-			| Need help in Math
-			br
-			input(type='checkbox', name='fack[helpSpanish]', id='has_spanish')
-			| Need help in Spanish
-			br
-			input(type='checkbox', name='fack[canCS]', id='need_computerScience')
-			| Can help in Computer Science
-			br
-			input(type='checkbox', name='fack[canMath]', id='need_math')
-			| Can help in Math
-			br
-			input(type='checkbox', name='fack[canSpanish]', id='need_spanish')
-			| Can help in Spanish
-			br			
+	form.settings.content_box(name='settings', method='post', action='/settings/#{name}')
+		.span-5.prepend-1.content_box
+			h4 I can help with...
+			- var num = 0;
+			- for (var c = 0; c < topics.categories.length; c++)
+				strong #{topics.categories[c].name}
+				br
+				- for (var t = 0; t < topics.categories[c].subtopics.length; t++)
+					input(type='checkbox', name='can_#{num}', value='can_#{num}')
+					| #{topics.categories[c].subtopics[t].name}
+					- num++;
+					br
+		.span-5.last.content_box
+			h4 I need help with...
+			- var num = 0;
+			- for (var c = 0; c < topics.categories.length; c++)
+				strong #{topics.categories[c].name}
+				br
+				- for (var t = 0; t < topics.categories[c].subtopics.length; t++)
+					input(type='checkbox', name='need_#{num}', value='need_#{num}')
+					| #{topics.categories[c].subtopics[t].name}
+					- num++;
+					br
+		.span-10.last.content_box.prepend-1
 			input(type='submit')
