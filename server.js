@@ -4,15 +4,24 @@ app.use(express.logger('dev'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
+app.locals.pretty = true;
 
 app.get('/', function(req, res){
 	res.render('index',
-	{title : "hackathon"}
+	{title : "Pork!"}
 	);
 });
 
-app.get('/blarg', function(req, res){
-  res.send('Hello World');
+app.get('/help', function(req, res){
+	res.render('help',
+	{title : "Help with Pork!"}
+	);
+});
+
+app.get('/about', function(req, res){
+	res.render('about',
+	{title : "About Pork!"}
+	);
 });
 
 var server = app.listen(3000, function() {
