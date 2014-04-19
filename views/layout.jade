@@ -6,14 +6,17 @@ html
 		link(href='css/pork.css', rel='stylesheet' type='text/css')
 	body
 		.container
-			.span-4
-				h1 Pork!
-			.span-8.last.message
+			hr.space
+			.span-3.prepend-1
+				a(href='/', class='logo'): h1.logo Pork!
+			.span-7.last.message.content_box
 				block message
-			.span-12
+			.span-10.last.prepend-1
 				a(href='/help') Help Me! 
 				a(href='/about') About this Page 
 				block moreLinks
 			block content
-			.span-12
+			.span-10.last.prepend-1
+				br
+				hr.space
 				p Running on node with Express, Jade and Stylus
