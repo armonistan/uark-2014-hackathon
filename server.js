@@ -12,8 +12,9 @@ app.get('/', function(req, res){
 });
 
 app.get('/blarg', function(req, res){
-  res.send('Hello World');
-});
+	res.render('about',
+	{title : "About Pork"}
+	);});
 
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
