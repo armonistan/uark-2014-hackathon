@@ -4,21 +4,28 @@ html
 		title #{title}
 		link(href='/css/blueprint.css', rel='stylesheet' type='text/css')
 		link(href='/css/pork.css', rel='stylesheet' type='text/css')
+		if (error != null)
+			script.
+				alert("#{error}")
 	body
 		.container
 			hr.space
-			.span-3.prepend-1
+			.span-2.prepend-1.content_box.header_box
 				a(href='/', class='logo'): h1.logo Pork!
-			.span-7.last.message.content_box
+			.span-8.last.content_box.header_box
 				block message
-			.span-10.last.prepend-1
-				a(href='/help') Help Me! 
+				br
+				a(href='/help') Help Me!
+				span  
 				a(href='/about') About this Page
+				span  
 				if (name != null)
 					a(href='/logout') Logout
+					span  
 				block moreLinks
-			block content
-			.span-10.last.prepend-1
-				br
-				hr.space
-				p Running on node with Express, Jade and Love
+			hr.space
+			block content 
+			hr.space
+			.span-10.last.prepend-1.content_box
+				p Running on node.js with Express and Jade
+			hr.space

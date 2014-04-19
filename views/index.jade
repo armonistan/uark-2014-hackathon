@@ -2,7 +2,7 @@ extend layout
 block moreLinks
 	a(href='/signup') Do the signup
 block message
-	p
+	span
 		| Welcome to 
 		strong Pork! 
 		|  It's a cool way to learn from other University of Arkansas students. Learn more at our 
@@ -11,7 +11,7 @@ block message
 block content
 	script(src='/js/jquery.min.js')
 	script(src='/js/account_create.js')
-	.span-10.last.prepend-1
+	.span-10.last.prepend-1.content_box.middle_box
 		h3 Login
 		if (name == null)
 			form.login(method='post')
@@ -21,6 +21,6 @@ block content
 				br
 				input(type='submit', id='l_submit')
 		else
-			p 
+			p
 				|You've already logged in! View your 
 				a(href='/landing/#{name}') Landing Page.

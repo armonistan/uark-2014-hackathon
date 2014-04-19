@@ -1,10 +1,10 @@
 extend layout
 block message
-	p
+	span
 		| Thank you for signing up for 
 		strong Pork!
 block content
-	.span-10.last.prepend-1
+	.span-10.last.prepend-1.middle_box.content_box
 		h3 Create
 		if (name == null)
 			form.create(method='post')

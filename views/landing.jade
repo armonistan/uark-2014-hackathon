@@ -2,10 +2,9 @@ extend layout
 block moreLinks
 	a(href='/settings/#{name}') Settings
 block message
-	p
-		| Hello #{name}! Learn something you little shit!
+	span Hello #{name}! Learn something you little shit!
 block content
-	.content_box.span-2.prepend-1
+	.content_box.span-2.prepend-1.middle_box
 		h2 Profile
 		p
 			| Username: 
@@ -13,8 +12,8 @@ block content
 			br
 			| Member Since: 
 			strong uh
-	.content_box.span-5
+	.content_box.span-5.middle_box
 		h2 Active Sessions
-	.content_box.span-3.last
+	.content_box.span-3.last.middle_box
 		h2 New Session
 		strong Create New Session

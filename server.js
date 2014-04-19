@@ -4,6 +4,8 @@ var app = express();
 var AM = require('./modules/accountManager');
 var SM = require('./modules/settingsManager');
 
+var fs = require('fs');
+
 app.use(express.logger('dev'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -26,12 +28,16 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
 	AM.validateLogin(req.param('name'), req.param('pass'), function(valid) {
 		console.log(valid);
-		if (valid) {
+		if (!(valid === undefined)) {
 			req.session.loggedIn = true;
 			req.session.name = req.param('name');
 			res.redirect('/landing/' + req.param('name'));
 		} else {
-			res.send("Incorrect login information! <a href='/'>Home</a>");
+			res.render('index',
+			{title: "Pork!",
+			name: req.session.name,
+			error:	"Incorrect login information!"}
+			);
 		}
 	});
 });
@@ -41,7 +47,11 @@ app.get('/logout', function(req, res){
 		req.session.destroy();
 		res.redirect('/');
 	} else {
-		res.send("Not logged in! <a href'/'>Home</a>");
+		res.render('index',
+		{title: "Pork!",
+		name: req.session.name,
+		error:	"You aren't logged in!"}
+		);
 	}
 });
 
@@ -81,7 +91,23 @@ app.post('/signup', function(req, res){
 			req.session.name = req.param('name');
 			res.redirect('/landing/' + req.param('name'));
 		} else {
-			res.send("Account already in use! <a href='/'>Home</a>");
+			res.render('signup',
+			{title: "Pork!",
+			name: req.session.name,
+			error:	"Account already in use!"}
+			);
+		}
+	});
+});
+
+app.post('/session', function(req, res) {
+	CM.validateUsers(req.param('user1'), req.param('user2'), function(valid) {
+		if (valid) {
+			var newConvo = CM.createConversation(req.param('user1'), req.param('user2'));
+			res.redirect('/session/' + newConvo);
+		}
+		else {
+			res.send("One of the users does not exist! <a href='/landing'>Back</a>");
 		}
 	});
 });
@@ -107,13 +133,27 @@ app.get('/settings/:name', function(req, res){
 			{title: "Pork! Settings", name : req.params.name}
 		);
 	} else {
-		res.send("This is not your homepage! <a href='/'>Home</a>");
+		res.render('index',
+		{title: "Pork!",
+		name: req.session.name,
+		error:	"This is not your homepage!"}
+		);
 	}
 });
 
 app.get('/landing', function(req, res) {
 	res.render('landing',
 	{title: "Use Pork!", name: "Fucktard"}
+	);
+});
+
+app.get('/session/:number', function(req, res) {
+	var convoFile = CM.loadConversation(req.params.number);
+	
+	console.log(convoFile);
+	
+	res.render('session',
+	{title: "Learn with Pork!", convo: convoFile}
 	);
 });
 
