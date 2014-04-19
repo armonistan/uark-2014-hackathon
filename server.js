@@ -24,6 +24,12 @@ app.get('/about', function(req, res){
 	);
 });
 
+app.get('/landing', function(req, res) {
+	res.render('landing',
+	{title: "Use Pork!", name: "Fucktard"}
+	);
+});
+
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
 });

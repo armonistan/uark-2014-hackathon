@@ -2,13 +2,16 @@ doctype html
 html
   head
     title #{title}
+    link(href='css/blueprint.css', rel='stylesheet' type='text/css')
+    link(href='css/pork.css', rel='stylesheet' type='text/css')
   body
-    header
-      a(href='/help') Help Me!
-      br
-      a(href='/about') About this Page
-      br
-      block moreLinks
-    block content
-    footer
-      p Running on node with Express, Jade and Stylus
+    .container
+      header
+        a(href='/help') Help Me!
+        br
+        a(href='/about') About this Page
+        br
+        block moreLinks
+      block content
+      footer
+        p Running on node with Express, Jade and Stylus
