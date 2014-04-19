@@ -2,10 +2,28 @@ body {
 	font-family: sans-serif;
 }
 
+a {
+	color: #000000;
+}
+
+.logo {
+	color: #954B47;
+	text-decoration: none;
+}
+
 .message {
 	vertical-align: bottom;
 }
 
-.landing_box {
-	background-color: #E6AFAC;
+.container {
+	background-color: #F2EAE9;
+}
+
+.content_box {
+	background-color: #E6DBDA;
+	background-clip: content-box;
+}
+
+hr.space {
+	width: 0px;
 }
