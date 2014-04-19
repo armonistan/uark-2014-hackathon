@@ -17,5 +17,19 @@ block content
     br
     input(type='password', id='l_password', placeholder='Password')
     br
-    input(type='submit', id='l_submit')
+<<<<<<< HEAD
+    input(type='submit')
 
+=======
+    input(type='submit', id='l_submit')
+  form.create(onload='validate("test")')
+    h3 Create
+    input(type='text', id='c_username', placeholder='Username')
+    span(id='c_username_feedback') test
+    br
+    input(type='password', id='c_password', placeholder='Password')
+    br
+    input(type='password', id='c_confirm_password', placeholder='Confirm Password')
+    br
+    input(type='submit', id='c_submit')
+>>>>>>> e962f4c0ce331adcf832660aa793feed4f52d596
