@@ -113,6 +113,7 @@ app.post('/session', function(req, res) {
 				if (valid) {
 					var newConvo = CM.createConversation(req.session.name, user2.name);
 					AM.addCoversationToUser(req.session.name, newConvo, user2.name, req.param('topic'));
+					AM.addCoversationToUser(user2.name, newConvo, req.session.name, req.param('topic'));
 					res.redirect('/session/' + newConvo);
 				} else {
 					res.send("One of the users does not exist! <a href='/landing/"+ req.session.name+"'>Back</a>");
