@@ -15,7 +15,14 @@ block content
 				strong #{topics.categories[c].name}
 				br
 				- for (var t = 0; t < topics.categories[c].subtopics.length; t++)
-					input(type='checkbox', name='can_#{num}', value='can_#{num}')
+					- var can = false;
+					- for (var u = 0; u < topics.categories[c].subtopics[t].canHelp.length; u++)
+						- if (topics.categories[c].subtopics[t].canHelp[u] == name)
+							- can = true;
+					- if (can)
+						input(type='checkbox', name='can_#{num}', value='can_#{num}', checked)
+					- else
+						input(type='checkbox', name='can_#{num}', value='can_#{num}')
 					| #{topics.categories[c].subtopics[t].name}
 					- num++;
 					br
@@ -26,7 +33,14 @@ block content
 				strong #{topics.categories[c].name}
 				br
 				- for (var t = 0; t < topics.categories[c].subtopics.length; t++)
-					input(type='checkbox', name='need_#{num}', value='need_#{num}')
+					- var need = false;
+					- for (var u = 0; u < topics.categories[c].subtopics[t].needsHelp.length; u++)
+						- if (topics.categories[c].subtopics[t].needsHelp[u] == name)
+							- need = true;
+					- if (need)
+						input(type='checkbox', name='need_#{num}', value='need_#{num}', checked)
+					- else
+						input(type='checkbox', name='need_#{num}', value='need_#{num}')
 					| #{topics.categories[c].subtopics[t].name}
 					- num++;
 					br
