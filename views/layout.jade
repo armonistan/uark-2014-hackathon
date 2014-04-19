@@ -3,6 +3,12 @@ html
   head
     title #{title}
   body
+    header
+      a(href='/help') Help Me!
+      br
+      a(href='/about') About this Page
+      br
+      block moreLinks
     block content
     footer
       p Running on node with Express, Jade and Stylus
