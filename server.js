@@ -6,23 +6,28 @@ var AM = require('./modules/accountManager');
 app.use(express.logger('dev'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.use(express.bodyParser());
+app.use(express.cookieParser());
+app.use(express.session({secret: 'secret'}));
 app.use(express.static(__dirname + '/public'));
 app.locals.pretty = true;
 
 app.get('/', function(req, res){
+	if (req.session.loggedIn === undefined) {
+		req.session.loggedIn = false;
+	}
 	res.render('index',
 	{title : "Pork!"}
 	);
 });
 
 app.post('/', function(req, res){
-	if (AM.validateLogin(req.param('name'), req.param('pass')) {
+	if (AM.validateLogin(req.param('name'), req.param('pass'))) {
 		req.session.loggedIn = true;
 		req.session.name = req.param('name');
 		res.redirect('/landing/' + req.param('name'));
 	} else {
-		res.render("Incorrect login information!");
-		setTimeout(function(){res.redirect('/')}, 300);
+		res.send("Incorrect login information! <a href='/'>Home</a>");
 	}
 });
 
@@ -51,14 +56,13 @@ app.get('/signup', function(req, res){
 });
 
 app.post('/signup', function(req, res){
-	if (AM.validateSignup(req.param('name')) {
+	if (AM.validateSignup(req.param('name'))) {
 		AM.createUser(req.param('name'), req.param('pass'));
 		req.session.loggedIn = true;
 		req.session.name = req.param('name');
 		res.redirect('/landing/' + req.param('name'));
 	} else {
-		res.render("Account already in use!");
-		setTimeout(function(){res.redirect('/')}, 300);
+		res.send("Account already in use! <a href='/'>Home</a>");
 	}
 });
 
@@ -68,8 +72,7 @@ app.get('/landing/:name', function(req, res){
 			{name : req.params.name}
 		);
 	} else {
-		res.render("This is not your homepage!");
-		setTimeout(function(){res.redirect('/')}, 300);
+		res.send("This is not your homepage! <a href='/'>Home</a>");
 	}
 });
 

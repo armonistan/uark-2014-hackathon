@@ -1,7 +1,8 @@
 var fs = require('fs');
+//fs.createReadStream('users');
 
 exports.validateSignup = function(name) {
-	fs.readaddr('../users', function(error, files) {
+	fs.readdir('users', function(error, files) {
 		for(i = 0; i < files.length; i++) {
 			if (files[i] == name + '.json') {
 				return false;
@@ -12,10 +13,10 @@ exports.validateSignup = function(name) {
 }
 
 exports.validateLogin = function(name, password) {
-	fs.readaddr('../users', function(error, files) {
+	fs.readaddr('users', function(error, files) {
 		for(i = 0; i < files.length; i++) {
 			if (files[i] == name + '.json') {
-				fs.readFile('../users' + files[i], function(error, data){
+				fs.readFile('users/' + files[i], function(error, data){
 					if (error) throw error;
 
 					if(JSON.parse(data).pass == password) {
@@ -31,9 +32,9 @@ exports.validateLogin = function(name, password) {
 }
 
 exports.createUser = function(name, password) {
-	fs.writeFile('../users', '{name: '+ name +', pass: ' + password + '}', function(error){
+	fs.writeFile('users/' + name + '.json', '{name: '+ name +', pass: ' + password + '}', function(error){
 		if(error) throw error;
 
 		console.log("created a new user " + name);
-	}
-}
+	});
+}	
