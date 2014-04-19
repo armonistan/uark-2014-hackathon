@@ -111,6 +111,7 @@ app.post('/session', function(req, res) {
 			CM.validateUsers(req.session.name, user2.name, function(valid) {
 				if (valid) {
 					var newConvo = CM.createConversation(req.session.name, user2.name);
+			AM.addCoversationToUser(req.param('user1'), newConvo, req.param('user2'), 'How to JS');
 					res.redirect('/session/' + newConvo);
 				} else {
 					res.send("One of the users does not exist! <a href='/landing/"+ req.session.name+"'>Back</a>");
@@ -123,7 +124,7 @@ app.post('/session', function(req, res) {
 app.get('/landing/:name', function(req, res){
 	if(req.session.loggedIn && req.session.name == req.params.name){
 		res.render('landing',
-			{title: "Use Pork!", name : req.params.name}
+			{title: "Use Pork!", user: AM.getUser(req.params.name), name : req.params.name}
 		);
 	} else {
 		res.send("This is not your homepage! <a href='/'>Home</a>");

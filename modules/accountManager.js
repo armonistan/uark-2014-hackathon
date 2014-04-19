@@ -36,3 +36,34 @@ exports.createUser = function(name, password) {
 		console.log("created a new user " + name);
 	});
 }
+
+exports.addCoversationToUser = function(name, sessionNum, otherName, topic) {
+	var user;
+	var files = fs.readdirSync('users');
+	for(var i = 0; i < files.length + 1; i++) {
+		if (files[i] == name + '.json') {
+			var data = fs.readFileSync('users/' + files[i])
+			user = JSON.parse(data);
+			if(user.activeSessions == null)
+				user.activeSessions = ([sessionNum, otherName, topic]);
+			else{
+				user.activeSessions.push([sessionNum, otherName, topic]);
+			}
+			console.log([name, sessionNum, otherName, topic]);
+			fs.writeFileSync('users/' + name + '.json', JSON.stringify(user));
+		}
+	}
+}
+
+exports.getUser = function(name){
+	var user;
+	var files = fs.readdirSync('users');
+	for(var i = 0; i < files.length + 1; i++) {
+		if (files[i] == name + '.json') {
+			var data = fs.readFileSync('users/' + files[i])
+			user = JSON.parse(data);
+		}
+	}
+	
+	return user;
+}
