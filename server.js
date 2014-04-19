@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var AM = require('./modules/accountManager');
-var CM = require('./modules/conversationManager');
+var SM = require('./modules/settingsManager');
 
 var fs = require('fs');
 
@@ -116,6 +116,21 @@ app.get('/landing/:name', function(req, res){
 	if(req.session.loggedIn && req.session.name == req.params.name){
 		res.render('landing',
 			{title: "Use Pork!", name : req.params.name}
+		);
+	} else {
+		res.send("This is not your homepage! <a href='/'>Home</a>");
+	}
+});
+
+app.post('/settings/:name', function(req, res){
+	SM.setSettings(req.param('name'), (req.body.fack));
+	res.redirect('/landing/' + req.param('name'));
+});
+
+app.get('/settings/:name', function(req, res){
+	if(req.session.loggedIn && req.session.name == req.params.name){
+		res.render('settings',
+			{title: "Pork! Settings", name : req.params.name}
 		);
 	} else {
 		res.render('index',

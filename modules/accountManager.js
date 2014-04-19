@@ -1,5 +1,4 @@
 var fs = require('fs');
-//fs.createReadStream('users');
 
 exports.validateSignup = function(name, f) {
 	fs.readdir('users', function(error, files) {

@@ -7,14 +7,24 @@ block message
 		|  Settings.
 block content
 	.span-10.last.prepend-1
-	h3 Check it when you need it!
-	form.settings(method='post')
-			input(type='checkbox', name='hasComputerScience', id='has_computerScience')
+		h3 Check it when you need it!
+		form.settings(name = 'settings', method='post')
+			input(type='checkbox', name='fack[helpCS]', id='has_computerScience')
+			| Need help in Computer Science
 			br
-			input(type='checkbox', name='hasMath', id='has_math')
+			input(type='checkbox', name='fack[helpMath]', id='has_math')
+			| Need help in Math
 			br
-			input(type='checkbox', name='hasSpanish', id='has_spanish')
+			input(type='checkbox', name='fack[helpSpanish]', id='has_spanish')
+			| Need help in Spanish
 			br
-			input(type='checkbox', name='needSpanish', id='need_spanish')
+			input(type='checkbox', name='fack[canCS]', id='need_computerScience')
+			| Can help in Computer Science
+			br
+			input(type='checkbox', name='fack[canMath]', id='need_math')
+			| Can help in Math
+			br
+			input(type='checkbox', name='fack[canSpanish]', id='need_spanish')
+			| Can help in Spanish
 			br			
 			input(type='submit')
