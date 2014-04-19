@@ -2,21 +2,21 @@ doctype html
 html
 	head
 		title #{title}
-		link(href='css/blueprint.css', rel='stylesheet' type='text/css')
-		link(href='css/pork.css', rel='stylesheet' type='text/css')
+		link(href='/css/blueprint.css', rel='stylesheet' type='text/css')
+		link(href='/css/pork.css', rel='stylesheet' type='text/css')
 	body
 		.container
 			hr.space
-			.span-3.prepend-1
+			.span-2.prepend-1.content_box.header_box
 				a(href='/', class='logo'): h1.logo Pork!
-			.span-7.last.message.content_box
+			.span-8.last.content_box.header_box
 				block message
-			.span-10.last.prepend-1
+				br
 				a(href='/help') Help Me! 
 				a(href='/about') About this Page 
 				block moreLinks
+			hr.space
 			block content
-			.span-10.last.prepend-1
-				br
-				hr.space
+			hr.space
+			.span-10.last.prepend-1.content_box
 				p Running on node with Express, Jade and Love

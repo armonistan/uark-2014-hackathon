@@ -1,0 +1,21 @@
+extends layout
+block message
+	span Currently talking about #{topic}
+block content
+	.span-8.prepend-1.content_box.middle_box
+		h2 Session
+		.chat_area(id="s_chat")
+			//Nothing initially
+		.controls_area
+			form(id="s_controls")
+				span.controls_instructions Talk in here: 
+				input(type="text", id="s_enter_text").controls_textbox
+				input(type="submit", id="s_send", value="Send").controls_send
+	.span-2.last.content_box.middle_box
+		h2 "Porkie:"
+		p
+			| Username: 
+			strong #{partnerUsername}
+			br
+			| Member Since: 
+			strong uh

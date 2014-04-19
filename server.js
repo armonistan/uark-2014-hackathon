@@ -87,6 +87,12 @@ app.get('/landing', function(req, res) {
 	);
 });
 
+app.get('/session', function(req, res) {
+	res.render('session',
+	{title: "Learn with Pork!", name: "Fucktard", topic: "Espanol", partnerUsername: "Wise Master"}
+	);
+});
+
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
 });
