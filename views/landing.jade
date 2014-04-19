@@ -12,11 +12,18 @@ block content
 			br
 			| Member Since: 
 			strong uh
+			
 	.content_box.span-5.middle_box
-		h2 Active Sessions
+		h2 Active Conversations
+		if (user.activeSessions != null) 
+			-each message in user.activeSessions
+				a(href='/session/#{message[0]}') Talking with #{message[1]} about #{message[2]}
+				br			
 	.content_box.span-3.last.middle_box
 		h2 New Session
 		form(action='/session', method='post')
-			input(type='hidden', id='user1', value='dpumford', name='user1')
-			input(type='hidden', id='user2', value='fack', name='user2')
-			input(type='submit')
+			h4 Category:
+				input(type='text', id='category', name='category')
+			h4 Topic:
+				input(type='text', id='topic', name='topic')
+			input(type='submit', value='Find Random User')
