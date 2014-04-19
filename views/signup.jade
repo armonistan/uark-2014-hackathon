@@ -6,10 +6,10 @@ block message
 block content
 	.span-12
 		h3 Create
-		form.create
-			input(type='text', id='c_username', placeholder='Username')
+		form.create(method='post')
+			input(type='text', name='name', id='c_username', placeholder='Username')
 			br
-			input(type='password', id='c_password', placeholder='Password')
+			input(type='password', name='pass', id='c_password', placeholder='Password')
 			br
 			input(type='password', id='c_confirm_password', placeholder='Confirm Password')
 			br
