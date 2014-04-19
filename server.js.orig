@@ -22,16 +22,13 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-	AM.validateLogin(req.param('name'), req.param('pass'), function(valid) {
-		console.log(valid);
-		if (valid) {
-			req.session.loggedIn = true;
-			req.session.name = req.param('name');
-			res.redirect('/landing/' + req.param('name'));
-		} else {
-			res.send("Incorrect login information! <a href='/'>Home</a>");
-		}
-	});
+	if (AM.validateLogin(req.param('name'), req.param('pass'))) {
+		req.session.loggedIn = true;
+		req.session.name = req.param('name');
+		res.redirect('/landing/' + req.param('name'));
+	} else {
+		res.send("Incorrect login information! <a href='/'>Home</a>");
+	}
 });
 
 app.get('/help', function(req, res){
@@ -52,6 +49,7 @@ app.get('/about', function(req, res){
 	);
 });
 
+<<<<<<< HEAD
 app.get('/signup', function(req, res){
 	res.render('signup',
 	{title : "Signup for Pork!"}
@@ -59,16 +57,14 @@ app.get('/signup', function(req, res){
 });
 
 app.post('/signup', function(req, res){
-	AM.validateSignup(req.param('name'), function(valid) {
-		if (valid) {
-			AM.createUser(req.param('name'), req.param('pass'));
-			req.session.loggedIn = true;
-			req.session.name = req.param('name');
-			res.redirect('/landing/' + req.param('name'));
-		} else {
-			res.send("Account already in use! <a href='/'>Home</a>");
-		}
-	});
+	if (AM.validateSignup(req.param('name'))) {
+		AM.createUser(req.param('name'), req.param('pass'));
+		req.session.loggedIn = true;
+		req.session.name = req.param('name');
+		res.redirect('/landing/' + req.param('name'));
+	} else {
+		res.send("Account already in use! <a href='/'>Home</a>");
+	}
 });
 
 app.get('/landing/:name', function(req, res){
@@ -81,12 +77,14 @@ app.get('/landing/:name', function(req, res){
 	}
 });
 
+=======
 app.get('/landing', function(req, res) {
 	res.render('landing',
 	{title: "Use Pork!", name: "Fucktard"}
 	);
 });
 
+>>>>>>> 8f545a59ef24c2f938f7d9efcb23bb5bd6e3e08d
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
 });

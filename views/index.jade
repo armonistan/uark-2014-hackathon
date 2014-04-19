@@ -11,11 +11,11 @@ block content
     | It's a cool way to learn from other University of Arkansas students. Learn more at our 
     a(href='/about') about
     |  page.
-  form.login
+  form.login(method='post')
     h3 Login
-    input(type='text', id='l_username', placeholder='Username')
+    input(type='text', name='name', placeholder='Username')
     br
-    input(type='password', id='l_password', placeholder='Password')
+    input(type='password', name='pass', placeholder='Password')
     br
     input(type='submit', id='l_submit')
 
