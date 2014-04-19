@@ -1,17 +1,19 @@
 doctype html
 html
-  head
-    title #{title}
-    link(href='css/blueprint.css', rel='stylesheet' type='text/css')
-    link(href='css/pork.css', rel='stylesheet' type='text/css')
-  body
-    .container
-      header
-        a(href='/help') Help Me!
-        br
-        a(href='/about') About this Page
-        br
-        block moreLinks
-      block content
-      footer
-        p Running on node with Express, Jade and Stylus
+	head
+		title #{title}
+		link(href='css/blueprint.css', rel='stylesheet' type='text/css')
+		link(href='css/pork.css', rel='stylesheet' type='text/css')
+	body
+		.container
+			.span-4
+				h1 Pork!
+			.span-8.last.message
+				block message
+			.span-12
+				a(href='/help') Help Me! 
+				a(href='/about') About this Page 
+				block moreLinks
+			block content
+			.span-12
+				p Running on node with Express, Jade and Stylus
