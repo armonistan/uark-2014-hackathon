@@ -52,3 +52,9 @@ exports.loadConversation = function(number) {
 
 	return convoFile;
 }
+
+exports.appendConversation = function(convo, number, name, data) {
+	convo.messages.push([name, data]);
+
+	fs.writeFileSync('convos/' + number + '.json', JSON.stringify(convo));
+}

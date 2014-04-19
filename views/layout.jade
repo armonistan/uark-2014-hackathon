@@ -21,6 +21,9 @@ html
 				span  
 				if (name != null)
 					a(href='/logout') Logout
+					span
+				else
+					a(href='/landing/#{name}')
 					span  
 				block moreLinks
 			hr.space

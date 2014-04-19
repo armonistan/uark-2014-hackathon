@@ -154,8 +154,16 @@ app.get('/session/:number', function(req, res) {
 	console.log(convoFile);
 	
 	res.render('session',
-	{title: "Learn with Pork!", convo: convoFile}
+	{title: "Learn with Pork!", convo: convoFile, name: req.session.name}
 	);
+});
+
+app.post('/session/:number', function(req, res) {
+	var convoFile = CM.loadConversation(req.params.number);
+
+	CM.appendConversation(convoFile, req.params.number, req.session.name, JSON.stringify(req.body.addToConvo));
+
+	res.redirect('/session/' + req.params.number);
 });
 
 var server = app.listen(3000, function() {
