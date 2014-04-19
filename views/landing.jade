@@ -14,4 +14,7 @@ block content
 		h2 Active Sessions
 	.content_box.span-3.last.middle_box
 		h2 New Session
-		strong Create New Session
+		form(action='session/', method='post')
+			input(type='hidden', id='user1', value='dpumford', name='user1')
+			input(type='hidden', id='user2', value='fack', name='user2')
+			input(type='submit')
