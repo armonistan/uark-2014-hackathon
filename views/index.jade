@@ -2,6 +2,8 @@ extend layout
 block moreLinks
   a(href='http://www.emberware.com') The best place
 block content
+  script(src='/js/jquery.min.js')
+  script(src='/js/account_create.js')
   h1 Pork!
   p
     | Welcome to 
@@ -15,13 +17,14 @@ block content
     br
     input(type='password', id='l_password', placeholder='Password')
     br
-    input(type='submit')
-  form.create
+    input(type='submit', id='l_submit')
+  form.create(onload='validate("test")')
     h3 Create
     input(type='text', id='c_username', placeholder='Username')
+    span(id='c_username_feedback') test
     br
     input(type='password', id='c_password', placeholder='Password')
     br
     input(type='password', id='c_confirm_password', placeholder='Confirm Password')
     br
-    input(type='submit')
+    input(type='submit', id='c_submit')
